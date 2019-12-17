@@ -107,7 +107,7 @@ export default class CounterScreen extends Component {
                 marginTop: 20,
                 marginLeft: 100,
               }}
-              source={require('/Users/Darshin/Documents/CODING/Grace-Hopper-Program/SENIOR PHASE/HydrationBud4/assets/images/Max-6.png')}
+              source={require('/Users/Darshin/Documents/CODING/Grace-Hopper-Program/SENIOR PHASE/Stackathon/Hydro-Bud/assets/images/Max-6.png')}
             />
           ) : (
             <Image
@@ -115,7 +115,7 @@ export default class CounterScreen extends Component {
                 marginTop: 20,
                 marginLeft: 100,
               }}
-              source={require('/Users/Darshin/Documents/CODING/Grace-Hopper-Program/SENIOR PHASE/HydrationBud4/assets/images/maxLeft.png')}
+              source={require('/Users/Darshin/Documents/CODING/Grace-Hopper-Program/SENIOR PHASE/Stackathon/Hydro-Bud/assets/images/maxLeft.png')}
             />
           )}
         </View>

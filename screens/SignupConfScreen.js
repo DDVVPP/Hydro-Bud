@@ -32,7 +32,7 @@ export default class SignupConfScreen extends Component {
         <View>
           <Image
             style={{ marginTop: 20, marginLeft: 100 }}
-            source={require('/Users/Darshin/Documents/CODING/Grace-Hopper-Program/SENIOR PHASE/HydrationBud4/assets/images/Max-7.png')}
+            source={require('/Users/Darshin/Documents/CODING/Grace-Hopper-Program/SENIOR PHASE/Stackathon/Hydro-Bud/assets/images/Max-7.png')}
           />
         </View>
 
@@ -48,8 +48,6 @@ export default class SignupConfScreen extends Component {
           <View style={styles.buttonContainer}>
             <Text style={styles.button}>Next</Text>
           </View>
-          
-          
         </TouchableOpacity>
       </View>
     );

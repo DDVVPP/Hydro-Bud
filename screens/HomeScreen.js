@@ -37,7 +37,7 @@ export default class HomeScreen extends React.Component {
         <View>
           <Image
             styles={styles.welcomeImage}
-            source={require('/Users/Darshin/Documents/CODING/Grace-Hopper-Program/SENIOR PHASE/HydrationBud4/assets/images/HydraBudHome.png')}
+            source={require('/Users/Darshin/Documents/CODING/Grace-Hopper-Program/SENIOR PHASE/Stackathon/Hydro-Bud/assets/images/HydraBudHome.png')}
           />
         </View>
       </View>
