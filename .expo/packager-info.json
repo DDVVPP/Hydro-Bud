@@ -1,9 +1,9 @@
 {
   "devToolsPort": 19002,
-  "expoServerPort": 19000,
+  "expoServerPort": null,
   "packagerPort": null,
   "packagerPid": null,
   "expoServerNgrokUrl": "https://vb-h5a.anonymous.hydro-bud.exp.direct",
   "packagerNgrokUrl": "https://packager.vb-h5a.anonymous.hydro-bud.exp.direct",
-  "ngrokPid": 77071
+  "ngrokPid": 78424
 }
