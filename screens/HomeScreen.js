@@ -2,6 +2,7 @@ import * as WebBrowser from 'expo-web-browser';
 import React from 'react';
 import {
   Image,
+  ImageBackground,
   Platform,
   ScrollView,
   StyleSheet,
@@ -23,23 +24,33 @@ export default class HomeScreen extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.introText}>Hydro Bud</Text>
-        <Button
-          onPress={() => this.props.navigation.navigate('Login')}
-          title="Login"
-          style={{ fontSize: 20 }}
-        ></Button>
-        <Button
-          onPress={() => this.props.navigation.navigate('Signup')}
-          title="Sign Up"
-          style={{ fontSize: 20 }}
-        ></Button>
-        <View>
+        <View style={styles.welcomeContainer}>
           <Image
-            styles={styles.welcomeImage}
-            source={require('/Users/Darshin/Documents/CODING/Grace-Hopper-Program/SENIOR PHASE/Stackathon/Hydro-Bud/assets/images/HydraBudHome.png')}
+            style={styles.welcomeImage}
+            source={require('/Users/Darshin/Documents/CODING/Grace-Hopper-Program/SENIOR PHASE/Stackathon/Hydro-Bud/assets/images/HydroBudHome-15.png')}
           />
         </View>
+        <Text style={styles.introText}>Hydro Bud</Text>
+        <TouchableOpacity
+          onPress={() => this.props.navigation.navigate('Login')}
+        >
+          <View style={styles.buttonContainer}>
+            <Text style={styles.button}> Login </Text>
+          </View>
+        </TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => this.props.navigation.navigate('Signup')}
+        >
+          <View style={styles.buttonContainer}>
+            <Text style={styles.button}> Signup </Text>
+          </View>
+        </TouchableOpacity>
+        <Text style={styles.disclaimerText}>
+          ** Disclaimer: This app is not intended to provide an accurate medical
+          hydration assessment. Please consult your physician regarding any
+          water intake recommendations. The designer/engineer is not responsible
+          for any medical complications. Please drink responsibly.
+        </Text>
       </View>
     );
   }
@@ -52,29 +63,43 @@ HomeScreen.navigationOptions = {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+
     justifyContent: 'center',
     alignItems: 'center',
-    color: '#ff4760',
     marginLeft: 20,
     marginRight: 20,
     marginTop: 50,
     marginBottom: 30,
-    borderRadius: 20,
   },
   introText: {
-    marginTop: 10,
     marginLeft: 50,
     marginRight: 50,
-    alignItems: 'center',
+    marginTop: 100,
     justifyContent: 'center',
-    fontSize: 60,
+    fontSize: 50,
     color: '#ff4760',
   },
+  buttonContainer: {
+    marginLeft: 50,
+    marginRight: 50,
+    marginTop: 10,
+    overflow: 'hidden',
+    textAlign: 'center',
+  },
+  button: {
+    color: '#86afb5',
+    fontSize: 25,
+    fontWeight: '400',
+    overflow: 'hidden',
+    textAlign: 'center',
+  },
+  welcomeContainer: {
+    flex: 1,
+  },
   welcomeImage: {
-    width: 5,
-    height: 5,
-    resizeMode: 'contain',
+    width: 410,
+    height: 720,
+    // transform: [{ rotate: '0deg' }],
   },
 
   tabBarInfoContainer: {
@@ -101,6 +126,17 @@ const styles = StyleSheet.create({
     fontSize: 17,
     color: 'rgba(96,100,109, 1)',
     textAlign: 'center',
+  },
+  disclaimerText: {
+    fontSize: 12,
+    color: 'rgba(96,100,109, 1)',
+    textAlign: 'justify',
+    justifyContent: 'flex-end',
+    marginTop: 370,
+    marginRight: -15,
+    marginLeft: -15,
+    backgroundColor: 'white',
+    padding: 5,
   },
   navigationFilename: {
     marginTop: 5,
