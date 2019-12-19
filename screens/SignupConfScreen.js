@@ -29,10 +29,10 @@ export default class SignupConfScreen extends Component {
         <Text style={styles.introText}>
           Thanks for signing up {prevState.firstName}!
         </Text>
-        <View>
+        <View style={styles.imageContainer}>
           <Image
-            style={{ marginTop: 20, marginLeft: 100 }}
-            source={require('/Users/Darshin/Documents/CODING/Grace-Hopper-Program/SENIOR PHASE/Stackathon/Hydro-Bud/assets/images/Max-7.png')}
+            style={styles.image}
+            source={require('/Users/Darshin/Documents/CODING/Grace-Hopper-Program/SENIOR PHASE/Stackathon/Hydro-Bud/assets/images/HydroBud-01.png')}
           />
         </View>
 
@@ -69,7 +69,7 @@ const styles = StyleSheet.create({
     borderColor: 'white',
     marginLeft: 50,
     marginRight: 50,
-    marginTop: 10,
+    marginTop: 40,
     borderRadius: 10,
     overflow: 'hidden',
     padding: 20,
@@ -82,26 +82,29 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
     textAlign: 'center',
   },
+  imageContainer: {
+    justifyContent: 'center',
+  },
+  image: {
+    width: 250,
+    height: 250,
+    justifyContent: 'center',
+
+    marginLeft: 80,
+    transform: [{ rotate: '30deg' }],
+  },
   introText: {
-    // marginTop: 10,
     marginLeft: 50,
     marginRight: 50,
     alignItems: 'center',
     justifyContent: 'center',
-    fontSize: 20,
+    fontSize: 18,
     color: '#ff4760',
     textAlign: 'center',
   },
   funText: {
-    fontSize: 30,
-    color: '#ed0581',
-  },
-  welcomeImage: {
-    width: 100,
-    height: 80,
-    resizeMode: 'contain',
-    marginTop: 3,
-    marginLeft: 40,
-    justifyContent: 'center',
+    fontSize: 36,
+    color: '#ff4760',
+    fontWeight: '700',
   },
 });

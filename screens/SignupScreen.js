@@ -71,7 +71,6 @@ export default class SignupScreen extends Component {
         height: Number(this.state.height),
         weight: Number(this.state.weight),
         age: Number(this.state.age),
-        zipcode: Number(this.state.zipcode),
         totalCups: Number(this.calculateCups()),
       });
 
@@ -83,7 +82,6 @@ export default class SignupScreen extends Component {
         this.state.password != '' &&
         this.state.height != 0 &&
         this.state.weight != 0 &&
-        this.state.zipcode != 0 &&
         this.state.age != 0
       ) {
         this.props.navigation.navigate('Confirmation', this.state);
@@ -97,78 +95,110 @@ export default class SignupScreen extends Component {
 
   render() {
     return (
-      <View style={styles.container}>
-        <Text style={styles.inputTitle}>First Name:</Text>
-        <TextInput
-          onChangeText={text => this.setState({ firstName: text })}
-          value={this.firstName}
-          style={styles.inputFields}
-          placeholder="Enter first name"
-        />
-        <Text style={styles.inputTitle}>Last Name: </Text>
-        <TextInput
-          onChangeText={text => this.setState({ lastName: text })}
-          value={this.lastName}
-          style={styles.inputFields}
-          placeholder="Enter last name"
-        />
-        <Text style={styles.inputTitle}>Email: </Text>
-        <TextInput
-          onChangeText={text => this.setState({ email: text })}
-          keyboardType="email-address"
-          textContentType="emailAddress"
-          autoCapitalize="none"
-          autoCompleteType="email"
-          value={this.email}
-          style={styles.inputFields}
-          placeholder="Enter email"
-        />
-        <Text style={styles.inputTitle}>Password: </Text>
-        <TextInput
-          onChangeText={text => this.setState({ password: text })}
-          secureTextEntry={true}
-          value={this.password}
-          style={styles.inputFields}
-          placeholder="Enter password"
-        />
-        <Text style={styles.inputTitle}>Height: </Text>
-        <TextInput
-          onChangeText={text => this.setState({ height: text })}
-          value={this.height}
-          keyboardType="numeric"
-          style={styles.inputFields}
-          placeholder="Enter height in inches"
-        />
-        <Text style={styles.inputTitle}>Weight: </Text>
-        <TextInput
-          onChangeText={text => this.setState({ weight: text })}
-          value={this.weight}
-          keyboardType="numeric"
-          style={styles.inputFields}
-          placeholder="Enter weight in lbs"
-        />
-        <Text style={styles.inputTitle}>Age: </Text>
-        <TextInput
-          onChangeText={text => this.setState({ age: text })}
-          value={this.age}
-          keyboardType="numeric"
-          style={styles.inputFields}
-          placeholder="Enter age"
-        />
-        <Text style={styles.inputTitle}>Zip Code: </Text>
-        <TextInput
-          onChangeText={text => this.setState({ zipcode: text })}
-          value={this.age}
-          keyboardType="numeric"
-          style={styles.inputFields}
-          placeholder="Enter zip code"
-        />
-
-        <TouchableOpacity onPress={this.createUser}>
-          <View style={styles.buttonContainer}>
-            <Text style={styles.button}>Sign Up</Text>
+      <View style={{ flex: 1, padding: 20, marginTop: 20, marginBottom: 20 }}>
+        <View style={styles.container}>
+          <View style={{ width: 155, height: 100, color: 'powderblue' }}>
+            <Text style={styles.inputTitle}>First Name</Text>
           </View>
-        </TouchableOpacity>
+          <View style={{ width: 205, height: 100, color: 'powderblue' }}>
+            <TextInput
+              onChangeText={text => this.setState({ firstName: text })}
+              value={this.firstName}
+              style={styles.inputFields}
+            />
+          </View>
+        </View>
+        <View style={styles.container}>
+          <View style={{ width: 155, height: 100, color: 'powderblue' }}>
+            <Text style={styles.inputTitle}>Last Name</Text>
+          </View>
+          <View style={{ width: 205, height: 100, color: 'powderblue' }}>
+            <TextInput
+              onChangeText={text => this.setState({ lastName: text })}
+              value={this.lastName}
+              style={styles.inputFields}
+            />
+          </View>
+        </View>
+
+        <View style={styles.container}>
+          <View style={{ width: 155, height: 100, color: 'powderblue' }}>
+            <Text style={styles.inputTitle}>Email</Text>
+          </View>
+          <View style={{ width: 205, height: 100, color: 'powderblue' }}>
+            <TextInput
+              onChangeText={text => this.setState({ email: text })}
+              keyboardType="email-address"
+              textContentType="emailAddress"
+              autoCapitalize="none"
+              autoCompleteType="email"
+              value={this.email}
+              style={styles.inputFields}
+            />
+          </View>
+        </View>
+
+        <View style={styles.container}>
+          <View style={{ width: 155, height: 100, color: 'powderblue' }}>
+            <Text style={styles.inputTitle}>Password</Text>
+          </View>
+          <View style={{ width: 205, height: 100, color: 'powderblue' }}>
+            <TextInput
+              onChangeText={text => this.setState({ password: text })}
+              secureTextEntry={true}
+              value={this.password}
+              style={styles.inputFields}
+            />
+          </View>
+        </View>
+
+        <View style={styles.container}>
+          <View style={{ width: 155, height: 100, color: 'powderblue' }}>
+            <Text style={styles.inputTitle}>Height in inches</Text>
+          </View>
+          <View style={{ width: 205, height: 100, color: 'powderblue' }}>
+            <TextInput
+              onChangeText={text => this.setState({ height: text })}
+              value={this.height}
+              keyboardType="numeric"
+              style={styles.inputFields}
+            />
+          </View>
+        </View>
+        <View style={styles.container}>
+          <View style={{ width: 155, height: 100, color: 'powderblue' }}>
+            <Text style={styles.inputTitle}>Weight in lbs</Text>
+          </View>
+          <View style={{ width: 205, height: 100, color: 'powderblue' }}>
+            <TextInput
+              onChangeText={text => this.setState({ weight: text })}
+              value={this.weight}
+              keyboardType="numeric"
+              style={styles.inputFields}
+            />
+          </View>
+        </View>
+        <View style={styles.container}>
+          <View style={{ width: 155, height: 100, color: 'powderblue' }}>
+            <Text style={styles.inputTitle}>Age</Text>
+          </View>
+          <View style={{ width: 205, height: 100, color: 'powderblue' }}>
+            <TextInput
+              onChangeText={text => this.setState({ age: text })}
+              value={this.age}
+              keyboardType="numeric"
+              style={styles.inputFields}
+            />
+          </View>
+        </View>
+
+        <View>
+          <TouchableOpacity onPress={this.createUser}>
+            <View style={styles.buttonContainer}>
+              <Text style={styles.button}>Sign Up</Text>
+            </View>
+          </TouchableOpacity>
+        </View>
       </View>
     );
   }
@@ -182,36 +212,30 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-    justifyContent: 'center',
+    flexDirection: 'row',
   },
   inputTitle: {
     marginTop: 10,
-    marginLeft: 50,
-    marginRight: 50,
-    alignItems: 'center',
-    justifyContent: 'center',
-    fontSize: 20,
-    // fontWeight: 'bold',
-    color: '#ff4760',
+    marginLeft: 5,
+    padding: 8,
+    fontSize: 18,
+    color: '#545454',
   },
   inputFields: {
-    marginTop: 10,
-    marginLeft: 50,
-    marginRight: 50,
-    alignItems: 'center',
-    justifyContent: 'center',
-    fontSize: 20,
-    backgroundColor: '#fff0f2',
-    borderRadius: 10,
-    borderRadius: 7,
+    fontSize: 18,
+    backgroundColor: 'rgba(255, 69, 102, 0.05)',
+    padding: 13,
+    borderRadius: 15,
+    borderWidth: 1,
+    borderColor: 'rgba(255, 69, 102, 0.5)',
   },
   buttonContainer: {
     backgroundColor: '#4cd0f5',
     borderColor: 'white',
-    marginLeft: 50,
-    marginRight: 50,
+    marginLeft: 10,
+    marginRight: 10,
     marginTop: 10,
-    borderRadius: 10,
+    borderRadius: 15,
     overflow: 'hidden',
     padding: 20,
     textAlign: 'center',

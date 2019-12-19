@@ -52,32 +52,45 @@ export default class LoginScreen extends Component {
 
   render() {
     return (
-      <View style={styles.container}>
-        <Text style={styles.inputTitle}>Email: </Text>
-        <TextInput
-          onChangeText={text => this.setState({ email: text })}
-          keyboardType="email-address"
-          textContentType="emailAddress"
-          autoCapitalize="none"
-          autoCompleteType="email"
-          value={this.email}
-          style={styles.inputFields}
-          placeholder="Enter email"
-        />
-        <Text style={styles.inputTitle}>Password: </Text>
-        <TextInput
-          onChangeText={text => this.setState({ password: text })}
-          secureTextEntry={true}
-          value={this.password}
-          style={styles.inputFields}
-          placeholder="Enter password"
-        />
-
-        <TouchableOpacity onPress={this.onLogin}>
-          <View style={styles.buttonContainer}>
-            <Text style={styles.button}> Login </Text>
+      <View style={{ flex: 1, padding: 20, marginTop: 205 }}>
+        <View style={styles.container}>
+          <View style={{ width: 120, height: 100, color: 'powderblue' }}>
+            <Text style={styles.inputTitle}>Email</Text>
           </View>
-        </TouchableOpacity>
+          <View style={{ width: 240, height: 100, color: 'powderblue' }}>
+            <TextInput
+              onChangeText={text => this.setState({ email: text })}
+              keyboardType="email-address"
+              textContentType="emailAddress"
+              autoCapitalize="none"
+              autoCompleteType="email"
+              value={this.email}
+              style={styles.inputFields}
+              placeholder="Enter email"
+            />
+          </View>
+        </View>
+        <View style={styles.container}>
+          <View style={{ width: 120, height: 100, color: 'powderblue' }}>
+            <Text style={styles.inputTitle}>Password</Text>
+          </View>
+          <View style={{ width: 240, height: 100, color: 'powderblue' }}>
+            <TextInput
+              onChangeText={text => this.setState({ password: text })}
+              secureTextEntry={true}
+              value={this.password}
+              style={styles.inputFields}
+              placeholder="Enter password"
+            />
+          </View>
+        </View>
+        <View>
+          <TouchableOpacity onPress={this.onLogin}>
+            <View style={styles.buttonContainer}>
+              <Text style={styles.button}> Login </Text>
+            </View>
+          </TouchableOpacity>
+        </View>
       </View>
     );
   }
@@ -89,38 +102,31 @@ LoginScreen.navigationOptions = {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     backgroundColor: '#fff',
-    justifyContent: 'center',
+    flexDirection: 'row',
+    marginTop: -30,
   },
   inputTitle: {
     marginTop: 10,
-    marginLeft: 50,
-    marginRight: 50,
-    alignItems: 'center',
-    justifyContent: 'center',
-    fontSize: 20,
-    // fontWeight: 'bold',
-    color: '#ff4760',
+    padding: 8,
+    fontSize: 18,
+    color: '#545454',
   },
   inputFields: {
-    marginTop: 10,
-    marginLeft: 50,
-    marginRight: 50,
-    alignItems: 'center',
-    justifyContent: 'center',
-    fontSize: 20,
-    backgroundColor: '#fff0f2',
-    borderRadius: 10,
-    borderRadius: 7,
+    fontSize: 18,
+    backgroundColor: 'rgba(255, 69, 102, 0.05)',
+    padding: 13,
+    borderRadius: 15,
+    borderWidth: 1,
+    borderColor: 'rgba(255, 69, 102, 0.5)',
   },
   buttonContainer: {
     backgroundColor: '#4cd0f5',
     borderColor: 'white',
-    marginLeft: 50,
-    marginRight: 50,
-    marginTop: 10,
-    borderRadius: 10,
+    marginLeft: 10,
+    marginRight: 10,
+    borderRadius: 15,
+    marginTop: -10,
     overflow: 'hidden',
     padding: 20,
     textAlign: 'center',
