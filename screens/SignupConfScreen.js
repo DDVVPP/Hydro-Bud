@@ -1,18 +1,6 @@
 import React, { Component } from 'react';
 
-import {
-  View,
-  Text,
-  Image,
-  TextInput,
-  ScrollView,
-  Button,
-  Platform,
-  StyleSheet,
-  InputGroup,
-  InputAccessoryView,
-  Icon,
-} from 'react-native';
+import { View, Text, Image, StyleSheet } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import CounterScreen from './CounterScreen';
 
@@ -89,7 +77,6 @@ const styles = StyleSheet.create({
     width: 250,
     height: 250,
     justifyContent: 'center',
-
     marginLeft: 80,
     transform: [{ rotate: '30deg' }],
   },

@@ -2,17 +2,12 @@ import * as WebBrowser from 'expo-web-browser';
 import React from 'react';
 import {
   Image,
-  ImageBackground,
   Platform,
-  ScrollView,
   StyleSheet,
   Text,
   TouchableOpacity,
   View,
-  Button,
 } from 'react-native';
-
-import { MonoText } from '../components/StyledText';
 
 export default class HomeScreen extends React.Component {
   constructor() {

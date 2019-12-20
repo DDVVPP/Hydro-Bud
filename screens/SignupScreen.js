@@ -4,14 +4,12 @@ import {
   View,
   Text,
   TextInput,
-  Button,
   Platform,
   StyleSheet,
   TouchableOpacity,
   Alert,
 } from 'react-native';
 import { FirebaseWrapper } from '../firebase/firebase';
-import { objectExpression } from '@babel/types';
 
 export default class SignupScreen extends Component {
   constructor() {
@@ -50,14 +48,6 @@ export default class SignupScreen extends Component {
     return Math.ceil(calcInCups).toFixed(0);
   }
 
-  // cannotBeEmpty() {
-  //   for (let key in this.state) {
-  //     if (this.state.hasOwnProperty(key) && key !== '') {
-  //       Alert.alert(this.state[key], 'cannot be empty');
-  //     }
-  //   }
-  // }
-
   async createUser() {
     try {
       this.setState({
@@ -74,7 +64,6 @@ export default class SignupScreen extends Component {
         totalCups: Number(this.calculateCups()),
       });
 
-      // this.cannotBeEmpty();
       if (
         this.state.firstName != '' &&
         this.state.lastName != '' &&

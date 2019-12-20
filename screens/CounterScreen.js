@@ -1,20 +1,24 @@
 import React, { Component } from 'react';
+import _ from 'lodash';
 
-import {
-  View,
-  Text,
-  TextInput,
-  ScrollView,
-  Button,
-  Platform,
-  Image,
-  StyleSheet,
-  Animated,
-  Alert,
-} from 'react-native';
+import { View, Text, Image, StyleSheet, Animated, Alert } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-import * as Animatable from 'react-native-animatable';
-import { SafeAreaView } from 'react-navigation';
+
+import One from '../components/One';
+import Two from '../components/Two';
+import Three from '../components/Three';
+import Four from '../components/Four';
+import Five from '../components/Five';
+import Six from '../components/Six';
+import Seven from '../components/Seven';
+import Eight from '../components/Eight';
+import Nine from '../components/Nine';
+import Ten from '../components/Ten';
+import Eleven from '../components/Eleven';
+import Twelve from '../components/Twelve';
+import Thirteen from '../components/Thirteen';
+
+const BLINK_TIME = 150;
 
 export default class CounterScreen extends Component {
   constructor(props) {
@@ -23,35 +27,23 @@ export default class CounterScreen extends Component {
     let stateReceived = props.navigation.state.params;
     this.state = {
       remaining: stateReceived.totalCups,
-      fadeValue: new Animated.Value(0),
-      // time: new Date(),
+      eyes: true,
     };
     this.updateState = this.updateState.bind(this);
-  }
-  // handleViewRef = ref => (this.view = ref);
-  // bounce = () =>
-  //   this.view
-  //     .bounce(800)
-  //     .then(endState =>
-  //       console.log(endState.finished ? 'bounce finished' : 'bounce cancelled')
-  //     );
+    this.blink = this.blink.bind(this);
 
-  // componentWillMount() {
-  //   setInterval(
-  //     function() {
-  //       // if (this.time.getHours() === 12) {
-  //       //   this.setState({
-  //       //     remaining: stateReceived.totalCups,
-  //       //   });
-  //       //   console.log(this.state);
-  //       // }
-  //       this.setState({
-  //         time: new Date(),
-  //       });
-  //     }.bind(this),
-  //     300000
-  //   );
-  // }
+    setTimeout(this.blink, 900);
+  }
+
+  onComponentWillUnmount() {
+    clearTimeout(this._blinkTimer);
+  }
+
+  blink = () => {
+    this.setState({ eyes: false });
+    setTimeout(() => this.setState({ eyes: true }), BLINK_TIME);
+    this._blinkTimer = setTimeout(this.blink, _.random(900, 3000));
+  };
 
   updateState() {
     if (this.state.remaining > 0) {
@@ -65,6 +57,7 @@ export default class CounterScreen extends Component {
   render() {
     // console.log('THIS.STATE ', this.state);
 
+    const { eyes } = this.state;
     return (
       <View style={styles.container}>
         {/* <TouchableOpacity onPress={() => console.log('logged out')}>
@@ -100,25 +93,11 @@ export default class CounterScreen extends Component {
           </View>
         </TouchableOpacity>
 
-        <View>
-          {this.state.remaining === 0 ? (
-            <Image
-              style={{
-                marginTop: 20,
-                marginLeft: 100,
-              }}
-              source={require('/Users/Darshin/Documents/CODING/Grace-Hopper-Program/SENIOR PHASE/Stackathon/Hydro-Bud/assets/images/HydroBud-01.png')}
-            />
-          ) : (
-            <Image
-              style={{
-                marginTop: 20,
-                marginLeft: 100,
-              }}
-              source={require('/Users/Darshin/Documents/CODING/Grace-Hopper-Program/SENIOR PHASE/Stackathon/Hydro-Bud/assets/images/HydroBud-01.png')}
-            />
-          )}
-        </View>
+        {this.state.remaining === 0 ? (
+          <Thirteen eyes={eyes ? 'open' : 'closed'} />
+        ) : (
+          <One eyes={eyes ? 'open' : 'closed'} />
+        )}
       </View>
     );
   }
@@ -130,9 +109,9 @@ CounterScreen.navigationOptions = {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    justifyContent: 'center',
+    // flex: 1,
+    // backgroundColor: '#fff',
+    // justifyContent: 'center',
   },
   logOutContainer: {
     backgroundColor: '#4cd0f5',
@@ -154,17 +133,21 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   imageContainer: {
-    flex: 1,
-    backgroundColor: '#fff',
     justifyContent: 'center',
-    alignContent: 'center',
+  },
+  image: {
+    width: 250,
+    height: 250,
+    justifyContent: 'center',
+    marginLeft: 80,
+    transform: [{ rotate: '30deg' }],
   },
   buttonContainer: {
     backgroundColor: '#4cd0f5',
     borderColor: 'white',
     marginLeft: 50,
     marginRight: 50,
-    marginTop: 10,
+    marginTop: 30,
     borderRadius: 10,
     overflow: 'hidden',
     padding: 20,
@@ -178,20 +161,21 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   introText: {
-    marginTop: 10,
+    marginTop: 40,
     marginLeft: 50,
     marginRight: 50,
-    alignItems: 'center',
+    // alignItems: 'center',
     justifyContent: 'center',
-    fontSize: 20,
+    fontSize: 18,
     color: '#ff4760',
     textAlign: 'center',
   },
   funText: {
-    fontSize: 30,
-    color: '#ed0581',
-    alignItems: 'center',
-    justifyContent: 'center',
+    fontSize: 36,
+    color: '#ff4760',
+    fontWeight: '700',
+    // alignItems: 'center',
+    // justifyContent: 'center',
   },
   welcomeImage: {
     width: 5,
