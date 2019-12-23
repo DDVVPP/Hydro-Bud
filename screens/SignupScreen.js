@@ -64,18 +64,31 @@ export default class SignupScreen extends Component {
         totalCups: Number(this.calculateCups()),
       });
 
-      if (
-        this.state.firstName != '' &&
-        this.state.lastName != '' &&
-        this.state.email != '' &&
-        this.state.password != '' &&
-        this.state.height != 0 &&
-        this.state.weight != 0 &&
-        this.state.age != 0
+      if (this.state.firstName === '') {
+        Alert.alert('Please fill First Name');
+      } else if (this.state.lastName === '') {
+        Alert.alert('Please fill in Last Name');
+      } else if (
+        !this.state.email.includes('@') ||
+        !this.state.email.includes('.')
       ) {
-        this.props.navigation.navigate('Confirmation', this.state);
+        Alert.alert('Please enter valid email address');
+      } else if (this.state.password.length < 6) {
+        Alert.alert('Password must be six characters long');
+      } else if (
+        Number(this.state.height) <= 0 ||
+        Number(this.state.height) >= 100
+      ) {
+        Alert.alert('Please enter valid height in inches');
+      } else if (
+        Number(this.state.weight) <= 0 ||
+        Number(this.state.weight) >= 1000
+      ) {
+        Alert.alert('Please enter valid weight in inches');
+      } else if (this.state.age < 13 || this.state.age > 120) {
+        Alert.alert('Please enter valid age');
       } else {
-        Alert.alert('Oops!', 'Please fill in empty fields to proceed');
+        this.props.navigation.navigate('Confirmation', this.state);
       }
     } catch (error) {
       console.log('createUser not working ', error);
@@ -93,6 +106,7 @@ export default class SignupScreen extends Component {
             <TextInput
               onChangeText={text => this.setState({ firstName: text })}
               autoCapitalize="none"
+              autoCompleteType="off"
               value={this.firstName}
               style={styles.inputFields}
             />
@@ -106,6 +120,7 @@ export default class SignupScreen extends Component {
             <TextInput
               onChangeText={text => this.setState({ lastName: text })}
               autoCapitalize="none"
+              autoCompleteType="off"
               value={this.lastName}
               style={styles.inputFields}
             />
@@ -138,6 +153,7 @@ export default class SignupScreen extends Component {
             <TextInput
               onChangeText={text => this.setState({ password: text })}
               autoCapitalize="none"
+              autoCompleteType="off"
               secureTextEntry={true}
               value={this.password}
               style={styles.inputFields}
@@ -153,6 +169,7 @@ export default class SignupScreen extends Component {
             <TextInput
               onChangeText={text => this.setState({ height: text })}
               autoCapitalize="none"
+              autoCompleteType="off"
               value={this.height}
               keyboardType="numeric"
               style={styles.inputFields}
@@ -167,6 +184,7 @@ export default class SignupScreen extends Component {
             <TextInput
               onChangeText={text => this.setState({ weight: text })}
               autoCapitalize="none"
+              autoCompleteType="off"
               value={this.weight}
               keyboardType="numeric"
               style={styles.inputFields}
@@ -181,6 +199,7 @@ export default class SignupScreen extends Component {
             <TextInput
               onChangeText={text => this.setState({ age: text })}
               autoCapitalize="none"
+              autoCompleteType="off"
               value={this.age}
               keyboardType="numeric"
               style={styles.inputFields}
