@@ -92,6 +92,7 @@ export default class SignupScreen extends Component {
           <View style={{ width: 205, height: 100, color: 'powderblue' }}>
             <TextInput
               onChangeText={text => this.setState({ firstName: text })}
+              autoCapitalize="none"
               value={this.firstName}
               style={styles.inputFields}
             />
@@ -104,6 +105,7 @@ export default class SignupScreen extends Component {
           <View style={{ width: 205, height: 100, color: 'powderblue' }}>
             <TextInput
               onChangeText={text => this.setState({ lastName: text })}
+              autoCapitalize="none"
               value={this.lastName}
               style={styles.inputFields}
             />
@@ -117,6 +119,7 @@ export default class SignupScreen extends Component {
           <View style={{ width: 205, height: 100, color: 'powderblue' }}>
             <TextInput
               onChangeText={text => this.setState({ email: text })}
+              autoCapitalize="none"
               keyboardType="email-address"
               textContentType="emailAddress"
               autoCapitalize="none"
@@ -134,6 +137,7 @@ export default class SignupScreen extends Component {
           <View style={{ width: 205, height: 100, color: 'powderblue' }}>
             <TextInput
               onChangeText={text => this.setState({ password: text })}
+              autoCapitalize="none"
               secureTextEntry={true}
               value={this.password}
               style={styles.inputFields}
@@ -148,6 +152,7 @@ export default class SignupScreen extends Component {
           <View style={{ width: 205, height: 100, color: 'powderblue' }}>
             <TextInput
               onChangeText={text => this.setState({ height: text })}
+              autoCapitalize="none"
               value={this.height}
               keyboardType="numeric"
               style={styles.inputFields}
@@ -161,6 +166,7 @@ export default class SignupScreen extends Component {
           <View style={{ width: 205, height: 100, color: 'powderblue' }}>
             <TextInput
               onChangeText={text => this.setState({ weight: text })}
+              autoCapitalize="none"
               value={this.weight}
               keyboardType="numeric"
               style={styles.inputFields}
@@ -174,6 +180,7 @@ export default class SignupScreen extends Component {
           <View style={{ width: 205, height: 100, color: 'powderblue' }}>
             <TextInput
               onChangeText={text => this.setState({ age: text })}
+              autoCapitalize="none"
               value={this.age}
               keyboardType="numeric"
               style={styles.inputFields}

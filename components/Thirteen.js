@@ -9,12 +9,24 @@ const EyePart = ({ source }) => (
 
 const eyesOpenA = require('/Users/Darshin/Documents/CODING/Grace-Hopper-Program/SENIOR PHASE/Stackathon/Hydro-Bud/assets/images/Grow_13A.png');
 const eyesClosed = require('/Users/Darshin/Documents/CODING/Grace-Hopper-Program/SENIOR PHASE/Stackathon/Hydro-Bud/assets/images/Grow_13B.png');
-// const eyesOpenB = require('/Users/Darshin/Documents/CODING/Grace-Hopper-Program/SENIOR PHASE/Stackathon/Hydro-Bud/assets/images/Grow_13C.png');
+const eyesOpenB = require('/Users/Darshin/Documents/CODING/Grace-Hopper-Program/SENIOR PHASE/Stackathon/Hydro-Bud/assets/images/Grow_13C.png');
 
 export default function Eyes({ eyes = 'open' }) {
   return (
     <View style={styles.imageContainer}>
-      <EyePart source={eyes === 'open' ? eyesOpenA : eyesClosed} />
+      {/* <EyePart source={eyes === 'open' ? eyesOpenA : eyesClosed} /> */}
+
+      <EyePart
+        source={
+          eyes === 'open'
+            ? eyesOpenA
+            : eyes === 'closed'
+            ? eyesClosed
+            : eyes === 'openB'
+            ? eyesOpenB
+            : null
+        }
+      />
     </View>
   );
 }
@@ -24,12 +36,9 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   image: {
-    // width: 500,
     marginBottom: 2500,
-    // marginRight: 50,
     alignItems: 'center',
     justifyContent: 'center',
-    // marginLeft: 80,
     transform: [{ scale: 0.15 }],
   },
 });

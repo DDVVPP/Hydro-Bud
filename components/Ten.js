@@ -23,12 +23,9 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   image: {
-    // width: 500,
     marginBottom: 2500,
-    // marginRight: 50,
     alignItems: 'center',
     justifyContent: 'center',
-    // marginLeft: 80,
     transform: [{ scale: 0.15 }],
   },
 });
