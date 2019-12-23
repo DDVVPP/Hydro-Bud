@@ -19,30 +19,50 @@ import Twelve from '../components/Twelve';
 import Thirteen from '../components/Thirteen';
 
 const BLINK_TIME = 150;
+const images = [
+  require('../assets/images/Grow_13A.png'),
+  require('../assets/images/Grow_13B.png'),
+  require('../assets/images/Grow_13C.png'),
+];
 
 export default class CounterScreen extends Component {
   constructor(props) {
     super(props);
 
     let stateReceived = props.navigation.state.params;
+
     this.state = {
+      total: stateReceived.totalCups,
       remaining: stateReceived.totalCups,
       eyes: true,
+      index: 0,
     };
+
     this.updateState = this.updateState.bind(this);
     this.blink = this.blink.bind(this);
+    this.next = this.next.bind(this);
+    setTimeout(this.blink, 1000);
+  }
 
-    setTimeout(this.blink, 900);
+  componentDidMount() {
+    this.next();
   }
 
   onComponentWillUnmount() {
     clearTimeout(this._blinkTimer);
   }
 
+  next() {
+    setTimeout(() => {
+      this.setState({ index: (this.state.index + 1) % 3 });
+      this.next();
+    }, 300);
+  }
+
   blink = () => {
     this.setState({ eyes: false });
     setTimeout(() => this.setState({ eyes: true }), BLINK_TIME);
-    this._blinkTimer = setTimeout(this.blink, _.random(900, 3000));
+    this._blinkTimer = setTimeout(this.blink, _.random(1000, 2000));
   };
 
   updateState() {
@@ -56,6 +76,8 @@ export default class CounterScreen extends Component {
   }
   render() {
     // console.log('THIS.STATE ', this.state);
+    // console.log('THIS.TOTAL', this.state.total);
+    // console.log('THIS.REMAINING', this.state.remaining);
 
     const { eyes } = this.state;
     return (
@@ -65,7 +87,6 @@ export default class CounterScreen extends Component {
             <Text style={styles.logOutText}>Log out</Text>
           </View>
         </TouchableOpacity> */}
-
         {this.state.remaining > 1 ? (
           <Text style={styles.introText}>
             Keep track below to help me grow!{'\n'}
@@ -86,18 +107,211 @@ export default class CounterScreen extends Component {
             See you tomorrow morning!{'\n'}
           </Text>
         )}
-
         <TouchableOpacity onPress={this.updateState}>
           <View style={styles.buttonContainer}>
             <Text style={styles.button}>+</Text>
           </View>
         </TouchableOpacity>
 
-        {this.state.remaining === 0 ? (
-          <Thirteen eyes={eyes ? 'open' : 'closed'} />
-        ) : (
-          <One eyes={eyes ? 'open' : 'closed'} />
-        )}
+        {this.state.total === '13' ? (
+          this.state.remaining === '13' ? (
+            <One eyes={eyes ? 'open' : 'closed'} />
+          ) : this.state.remaining === 12 ? (
+            <Two eyes={eyes ? 'open' : 'closed'} />
+          ) : this.state.remaining === 11 ? (
+            <Three eyes={eyes ? 'open' : 'closed'} />
+          ) : this.state.remaining === 10 ? (
+            <Four eyes={eyes ? 'open' : 'closed'} />
+          ) : this.state.remaining === 9 ? (
+            <Five eyes={eyes ? 'open' : 'closed'} />
+          ) : this.state.remaining === 8 ? (
+            <Six eyes={eyes ? 'open' : 'closed'} />
+          ) : this.state.remaining === 7 ? (
+            <Seven eyes={eyes ? 'open' : 'closed'} />
+          ) : this.state.remaining === 6 ? (
+            <Eight eyes={eyes ? 'open' : 'closed'} />
+          ) : this.state.remaining === 5 ? (
+            <Nine eyes={eyes ? 'open' : 'closed'} />
+          ) : this.state.remaining === 4 ? (
+            <Ten eyes={eyes ? 'open' : 'closed'} />
+          ) : this.state.remaining === 3 ? (
+            <Eleven eyes={eyes ? 'open' : 'closed'} />
+          ) : this.state.remaining === 2 ? (
+            <Twelve eyes={eyes ? 'open' : 'closed'} />
+          ) : this.state.remaining === 1 ? (
+            <Thirteen eyes={eyes ? 'open' : 'closed'} />
+          ) : this.state.remaining === 0 ? (
+            <Image source={images[this.state.index]} style={styles.image} />
+          ) : null
+        ) : this.state.total === '12' ? (
+          this.state.remaining === '12' ? (
+            <One eyes={eyes ? 'open' : 'closed'} />
+          ) : this.state.remaining === 11 ? (
+            <Two eyes={eyes ? 'open' : 'closed'} />
+          ) : this.state.remaining === 10 ? (
+            <Three eyes={eyes ? 'open' : 'closed'} />
+          ) : this.state.remaining === 9 ? (
+            <Four eyes={eyes ? 'open' : 'closed'} />
+          ) : this.state.remaining === 8 ? (
+            <Five eyes={eyes ? 'open' : 'closed'} />
+          ) : this.state.remaining === 7 ? (
+            <Six eyes={eyes ? 'open' : 'closed'} />
+          ) : this.state.remaining === 6 ? (
+            <Seven eyes={eyes ? 'open' : 'closed'} />
+          ) : this.state.remaining === 5 ? (
+            <Eight eyes={eyes ? 'open' : 'closed'} />
+          ) : this.state.remaining === 4 ? (
+            <Nine eyes={eyes ? 'open' : 'closed'} />
+          ) : this.state.remaining === 3 ? (
+            <Ten eyes={eyes ? 'open' : 'closed'} />
+          ) : this.state.remaining === 2 ? (
+            <Eleven eyes={eyes ? 'open' : 'closed'} />
+          ) : this.state.remaining === 1 ? (
+            <Twelve eyes={eyes ? 'open' : 'closed'} />
+          ) : this.state.remaining === 0 ? (
+            <Image source={images[this.state.index]} style={styles.image} />
+          ) : null
+        ) : this.state.total === '11' ? (
+          this.state.remaining === '11' ? (
+            <One eyes={eyes ? 'open' : 'closed'} />
+          ) : this.state.remaining === 10 ? (
+            <Three eyes={eyes ? 'open' : 'closed'} />
+          ) : this.state.remaining === 9 ? (
+            <Four eyes={eyes ? 'open' : 'closed'} />
+          ) : this.state.remaining === 8 ? (
+            <Five eyes={eyes ? 'open' : 'closed'} />
+          ) : this.state.remaining === 7 ? (
+            <Six eyes={eyes ? 'open' : 'closed'} />
+          ) : this.state.remaining === 6 ? (
+            <Seven eyes={eyes ? 'open' : 'closed'} />
+          ) : this.state.remaining === 5 ? (
+            <Eight eyes={eyes ? 'open' : 'closed'} />
+          ) : this.state.remaining === 4 ? (
+            <Nine eyes={eyes ? 'open' : 'closed'} />
+          ) : this.state.remaining === 3 ? (
+            <Ten eyes={eyes ? 'open' : 'closed'} />
+          ) : this.state.remaining === 2 ? (
+            <Eleven eyes={eyes ? 'open' : 'closed'} />
+          ) : this.state.remaining === 1 ? (
+            <Twelve eyes={eyes ? 'open' : 'closed'} />
+          ) : this.state.remaining === 0 ? (
+            <Image source={images[this.state.index]} style={styles.image} />
+          ) : null
+        ) : this.state.total === '10' ? (
+          this.state.remaining === '10' ? (
+            <One eyes={eyes ? 'open' : 'closed'} />
+          ) : this.state.remaining === 9 ? (
+            <Two eyes={eyes ? 'open' : 'closed'} />
+          ) : this.state.remaining === 8 ? (
+            <Three eyes={eyes ? 'open' : 'closed'} />
+          ) : this.state.remaining === 7 ? (
+            <Four eyes={eyes ? 'open' : 'closed'} />
+          ) : this.state.remaining === 6 ? (
+            <Six eyes={eyes ? 'open' : 'closed'} />
+          ) : this.state.remaining === 5 ? (
+            <Eight eyes={eyes ? 'open' : 'closed'} />
+          ) : this.state.remaining === 4 ? (
+            <Nine eyes={eyes ? 'open' : 'closed'} />
+          ) : this.state.remaining === 3 ? (
+            <Ten eyes={eyes ? 'open' : 'closed'} />
+          ) : this.state.remaining === 2 ? (
+            <Eleven eyes={eyes ? 'open' : 'closed'} />
+          ) : this.state.remaining === 1 ? (
+            <Twelve eyes={eyes ? 'open' : 'closed'} />
+          ) : this.state.remaining === 0 ? (
+            <Image source={images[this.state.index]} style={styles.image} />
+          ) : null
+        ) : this.state.total === '9' ? (
+          this.state.remaining === '9' ? (
+            <One eyes={eyes ? 'open' : 'closed'} />
+          ) : this.state.remaining === 8 ? (
+            <Three eyes={eyes ? 'open' : 'closed'} />
+          ) : this.state.remaining === 7 ? (
+            <Four eyes={eyes ? 'open' : 'closed'} />
+          ) : this.state.remaining === 6 ? (
+            <Six eyes={eyes ? 'open' : 'closed'} />
+          ) : this.state.remaining === 5 ? (
+            <Seven eyes={eyes ? 'open' : 'closed'} />
+          ) : this.state.remaining === 4 ? (
+            <Eight eyes={eyes ? 'open' : 'closed'} />
+          ) : this.state.remaining === 3 ? (
+            <Nine eyes={eyes ? 'open' : 'closed'} />
+          ) : this.state.remaining === 2 ? (
+            <Eleven eyes={eyes ? 'open' : 'closed'} />
+          ) : this.state.remaining === 1 ? (
+            <Twelve eyes={eyes ? 'open' : 'closed'} />
+          ) : this.state.remaining === 0 ? (
+            <Image source={images[this.state.index]} style={styles.image} />
+          ) : null
+        ) : this.state.total === '8' ? (
+          this.state.remaining === '8' ? (
+            <One eyes={eyes ? 'open' : 'closed'} />
+          ) : this.state.remaining === 7 ? (
+            <Two eyes={eyes ? 'open' : 'closed'} />
+          ) : this.state.remaining === 6 ? (
+            <Four eyes={eyes ? 'open' : 'closed'} />
+          ) : this.state.remaining === 5 ? (
+            <Six eyes={eyes ? 'open' : 'closed'} />
+          ) : this.state.remaining === 4 ? (
+            <Eight eyes={eyes ? 'open' : 'closed'} />
+          ) : this.state.remaining === 3 ? (
+            <Ten eyes={eyes ? 'open' : 'closed'} />
+          ) : this.state.remaining === 2 ? (
+            <Eleven eyes={eyes ? 'open' : 'closed'} />
+          ) : this.state.remaining === 1 ? (
+            <Twelve eyes={eyes ? 'open' : 'closed'} />
+          ) : this.state.remaining === 0 ? (
+            <Image source={images[this.state.index]} style={styles.image} />
+          ) : null
+        ) : this.state.total === '7' ? (
+          this.state.remaining === '7' ? (
+            <One eyes={eyes ? 'open' : 'closed'} />
+          ) : this.state.remaining === 6 ? (
+            <Three eyes={eyes ? 'open' : 'closed'} />
+          ) : this.state.remaining === 5 ? (
+            <Five eyes={eyes ? 'open' : 'closed'} />
+          ) : this.state.remaining === 4 ? (
+            <Seven eyes={eyes ? 'open' : 'closed'} />
+          ) : this.state.remaining === 3 ? (
+            <Nine eyes={eyes ? 'open' : 'closed'} />
+          ) : this.state.remaining === 2 ? (
+            <Eleven eyes={eyes ? 'open' : 'closed'} />
+          ) : this.state.remaining === 1 ? (
+            <Twelve eyes={eyes ? 'open' : 'closed'} />
+          ) : this.state.remaining === 0 ? (
+            <Image source={images[this.state.index]} style={styles.image} />
+          ) : null
+        ) : this.state.total === '6' ? (
+          this.state.remaining === '6' ? (
+            <One eyes={eyes ? 'open' : 'closed'} />
+          ) : this.state.remaining === 5 ? (
+            <Three eyes={eyes ? 'open' : 'closed'} />
+          ) : this.state.remaining === 4 ? (
+            <Six eyes={eyes ? 'open' : 'closed'} />
+          ) : this.state.remaining === 3 ? (
+            <Seven eyes={eyes ? 'open' : 'closed'} />
+          ) : this.state.remaining === 2 ? (
+            <Nine eyes={eyes ? 'open' : 'closed'} />
+          ) : this.state.remaining === 1 ? (
+            <Eleven eyes={eyes ? 'open' : 'closed'} />
+          ) : this.state.remaining === 0 ? (
+            <Image source={images[this.state.index]} style={styles.image} />
+          ) : null
+        ) : this.state.total === '5' ? (
+          this.state.remaining === '5' ? (
+            <One eyes={eyes ? 'open' : 'closed'} />
+          ) : this.state.remaining === 4 ? (
+            <Three eyes={eyes ? 'open' : 'closed'} />
+          ) : this.state.remaining === 3 ? (
+            <Six eyes={eyes ? 'open' : 'closed'} />
+          ) : this.state.remaining === 2 ? (
+            <Nine eyes={eyes ? 'open' : 'closed'} />
+          ) : this.state.remaining === 1 ? (
+            <Twelve eyes={eyes ? 'open' : 'closed'} />
+          ) : this.state.remaining === 0 ? (
+            <Image source={images[this.state.index]} style={styles.image} />
+          ) : null
+        ) : null}
       </View>
     );
   }
@@ -137,11 +351,13 @@ const styles = StyleSheet.create({
   },
   image: {
     width: 250,
-    height: 250,
+    height: 270,
     justifyContent: 'center',
     marginLeft: 80,
-    transform: [{ rotate: '30deg' }],
+    marginTop: 40,
+    // transform: [{ rotate: '30deg' }],
   },
+
   buttonContainer: {
     backgroundColor: '#4cd0f5',
     borderColor: 'white',
