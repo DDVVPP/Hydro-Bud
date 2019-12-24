@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import * as firebase from 'firebase';
 
 import {
   View,
@@ -20,24 +21,50 @@ export default class LoginScreen extends Component {
     this.state = {
       email: '',
       password: '',
+      users: [],
     };
     this.onLogin = this.onLogin.bind(this);
   }
 
   async componentDidMount() {
-    await FirebaseWrapper.GetInstance().getUser('users');
-    console.log(
-      'FROM FIREBASE ',
-      await FirebaseWrapper.GetInstance().getUser('users')
-    );
+    FirebaseWrapper.GetInstance()
+      .getUser('users')
+      .then(dataValues => {
+        // console.log('USERS', dataValues);
+        this.setState({ users: dataValues });
+      });
   }
 
-  onLogin() {
-    if (this.state.email != '' && this.state.password != '') {
-      this.props.navigation.navigate('Counter', this.state);
-    } else {
-      Alert.alert('Oops!', 'Please fill in empty fields to proceed');
+  async onLogin() {
+    try {
+      await firebase
+        .auth()
+        .signInWithEmailAndPassword(this.state.email, this.state.password);
+      const allUsers = this.state.users;
+      const filteredUser = allUsers.filter(user => {
+        return user.email === this.state.email;
+      });
+      console.log(this.state.email);
+      console.log('ALL USERS', allUsers);
+      this.props.navigation.navigate('Counter', filteredUser);
+      console.log('FILTERED', filteredUser);
+      // if (
+      //   this.state.users.email === this.state.email &&
+      //   this.state.users.password === this.state.password
+      // ) {
+      //   this.props.navigation.navigate('Counter', filteredUser);
+      // }
+
+      // if (this.state.email != '' && this.state.password != '') {
+      //   this.props.navigation.navigate('Counter', this.state);
+      // }
+      // else {
+      //   Alert.alert('Oops!', 'Please fill in empty fields to proceed');
+      // }
+    } catch (error) {
+      console.log('createUser not working ', error);
     }
+
     // try {
     //   let value = await FirebaseWrapper.GetInstance().getUser('users');
     //   console.log('VALUE ', value);
@@ -51,6 +78,7 @@ export default class LoginScreen extends Component {
   }
 
   render() {
+    // console.log('USERS STATE', this.state.users);
     return (
       <View style={{ flex: 1, padding: 20, marginTop: 205 }}>
         <View style={styles.container}>

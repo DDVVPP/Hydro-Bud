@@ -77,9 +77,11 @@ export default class CounterScreen extends Component {
   render() {
     // console.log('THIS.STATE ', this.state);
     // console.log('THIS.TOTAL', this.state.total);
+    // console.log('PROPS', this.props.navigation.state.params);
     // console.log('THIS.REMAINING', this.state.remaining);
 
     const { eyes } = this.state;
+
     return (
       <View style={styles.container}>
         {/* <TouchableOpacity onPress={() => console.log('logged out')}>

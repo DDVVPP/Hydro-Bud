@@ -9,6 +9,8 @@ import AppNavigator from './navigation/AppNavigator';
 import { FirebaseWrapper } from './firebase/firebase';
 import { firebaseConfig } from './firebase/config';
 
+// firebase.initializeApp(firebaseConfig);
+
 export default function App(props) {
   const [isLoadingComplete, setLoadingComplete] = useState(false);
 

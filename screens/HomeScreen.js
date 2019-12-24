@@ -1,4 +1,3 @@
-import * as WebBrowser from 'expo-web-browser';
 import React from 'react';
 import {
   Image,
@@ -94,7 +93,6 @@ const styles = StyleSheet.create({
   welcomeImage: {
     width: 410,
     height: 720,
-    // transform: [{ rotate: '0deg' }],
   },
 
   tabBarInfoContainer: {

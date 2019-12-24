@@ -49,12 +49,12 @@ export class FirebaseWrapper {
     //creates reference to doc
     try {
       const ref = this._firestore.collection(collectionPath);
-      await ref.onSnapshot(querySnapshot => {
+
+      return ref.get().then(querySnapshot => {
         let docData = [];
         querySnapshot.forEach(doc => {
           docData.push(doc.data());
         });
-        console.log('doc data ', docData);
         return docData;
       });
     } catch (error) {
