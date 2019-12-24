@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import * as firebase from 'firebase';
+// import { firebaseConfig } from './firebase/config';
 
 import {
   View,
@@ -29,6 +31,14 @@ export default class SignupScreen extends Component {
     this.calculateCups = this.calculateCups.bind(this);
   }
 
+  // async componentDidMount() {
+  //   FirebaseWrapper.GetInstance()
+  //     .getUser('users')
+  //     .then(dataValues => {
+  //       console.log('USERS', dataValues);
+  //     });
+  // }
+
   calculateCups() {
     let firstCalc = this.state.weight / 2.2;
     let calcInCups = 0;
@@ -53,6 +63,7 @@ export default class SignupScreen extends Component {
       this.setState({
         totalCups: this.calculateCups(),
       });
+
       await FirebaseWrapper.GetInstance().CreateNewDocument('users', {
         firstName: this.state.firstName,
         lastName: this.state.lastName,
@@ -63,6 +74,10 @@ export default class SignupScreen extends Component {
         age: Number(this.state.age),
         totalCups: Number(this.calculateCups()),
       });
+
+      await firebase
+        .auth()
+        .createUserWithEmailAndPassword(this.state.email, this.state.password);
 
       if (this.state.firstName === '') {
         Alert.alert('Please fill First Name');
@@ -97,30 +112,63 @@ export default class SignupScreen extends Component {
 
   render() {
     return (
-      <View style={{ flex: 1, padding: 20, marginTop: 20, marginBottom: 20 }}>
+      <View
+        style={{
+          flex: 1,
+          padding: 20,
+          marginTop: 20,
+          marginBottom: 20,
+        }}
+      >
         <View style={styles.container}>
-          <View style={{ width: 155, height: 100, color: 'powderblue' }}>
+          <View
+            style={{
+              width: 155,
+              height: 100,
+              color: 'powderblue',
+            }}
+          >
             <Text style={styles.inputTitle}>First Name</Text>
           </View>
-          <View style={{ width: 205, height: 100, color: 'powderblue' }}>
+          <View
+            style={{
+              width: 205,
+              height: 100,
+              color: 'powderblue',
+            }}
+          >
             <TextInput
               onChangeText={text => this.setState({ firstName: text })}
               autoCapitalize="none"
               autoCompleteType="off"
+              autoCorrect={false}
               value={this.firstName}
               style={styles.inputFields}
             />
           </View>
         </View>
         <View style={styles.container}>
-          <View style={{ width: 155, height: 100, color: 'powderblue' }}>
+          <View
+            style={{
+              width: 155,
+              height: 100,
+              color: 'powderblue',
+            }}
+          >
             <Text style={styles.inputTitle}>Last Name</Text>
           </View>
-          <View style={{ width: 205, height: 100, color: 'powderblue' }}>
+          <View
+            style={{
+              width: 205,
+              height: 100,
+              color: 'powderblue',
+            }}
+          >
             <TextInput
               onChangeText={text => this.setState({ lastName: text })}
               autoCapitalize="none"
               autoCompleteType="off"
+              autoCorrect={false}
               value={this.lastName}
               style={styles.inputFields}
             />
@@ -128,17 +176,29 @@ export default class SignupScreen extends Component {
         </View>
 
         <View style={styles.container}>
-          <View style={{ width: 155, height: 100, color: 'powderblue' }}>
+          <View
+            style={{
+              width: 155,
+              height: 100,
+              color: 'powderblue',
+            }}
+          >
             <Text style={styles.inputTitle}>Email</Text>
           </View>
-          <View style={{ width: 205, height: 100, color: 'powderblue' }}>
+          <View
+            style={{
+              width: 205,
+              height: 100,
+              color: 'powderblue',
+            }}
+          >
             <TextInput
               onChangeText={text => this.setState({ email: text })}
               autoCapitalize="none"
               keyboardType="email-address"
               textContentType="emailAddress"
-              autoCapitalize="none"
               autoCompleteType="email"
+              autoCorrect={false}
               value={this.email}
               style={styles.inputFields}
             />
@@ -146,14 +206,27 @@ export default class SignupScreen extends Component {
         </View>
 
         <View style={styles.container}>
-          <View style={{ width: 155, height: 100, color: 'powderblue' }}>
+          <View
+            style={{
+              width: 155,
+              height: 100,
+              color: 'powderblue',
+            }}
+          >
             <Text style={styles.inputTitle}>Password</Text>
           </View>
-          <View style={{ width: 205, height: 100, color: 'powderblue' }}>
+          <View
+            style={{
+              width: 205,
+              height: 100,
+              color: 'powderblue',
+            }}
+          >
             <TextInput
               onChangeText={text => this.setState({ password: text })}
               autoCapitalize="none"
               autoCompleteType="off"
+              autoCorrect={false}
               secureTextEntry={true}
               value={this.password}
               style={styles.inputFields}
@@ -162,14 +235,27 @@ export default class SignupScreen extends Component {
         </View>
 
         <View style={styles.container}>
-          <View style={{ width: 155, height: 100, color: 'powderblue' }}>
+          <View
+            style={{
+              width: 155,
+              height: 100,
+              color: 'powderblue',
+            }}
+          >
             <Text style={styles.inputTitle}>Height in inches</Text>
           </View>
-          <View style={{ width: 205, height: 100, color: 'powderblue' }}>
+          <View
+            style={{
+              width: 205,
+              height: 100,
+              color: 'powderblue',
+            }}
+          >
             <TextInput
               onChangeText={text => this.setState({ height: text })}
               autoCapitalize="none"
               autoCompleteType="off"
+              autoCorrect={false}
               value={this.height}
               keyboardType="numeric"
               style={styles.inputFields}
@@ -177,14 +263,27 @@ export default class SignupScreen extends Component {
           </View>
         </View>
         <View style={styles.container}>
-          <View style={{ width: 155, height: 100, color: 'powderblue' }}>
+          <View
+            style={{
+              width: 155,
+              height: 100,
+              color: 'powderblue',
+            }}
+          >
             <Text style={styles.inputTitle}>Weight in lbs</Text>
           </View>
-          <View style={{ width: 205, height: 100, color: 'powderblue' }}>
+          <View
+            style={{
+              width: 205,
+              height: 100,
+              color: 'powderblue',
+            }}
+          >
             <TextInput
               onChangeText={text => this.setState({ weight: text })}
               autoCapitalize="none"
               autoCompleteType="off"
+              autoCorrect={false}
               value={this.weight}
               keyboardType="numeric"
               style={styles.inputFields}
@@ -192,14 +291,27 @@ export default class SignupScreen extends Component {
           </View>
         </View>
         <View style={styles.container}>
-          <View style={{ width: 155, height: 100, color: 'powderblue' }}>
+          <View
+            style={{
+              width: 155,
+              height: 100,
+              color: 'powderblue',
+            }}
+          >
             <Text style={styles.inputTitle}>Age</Text>
           </View>
-          <View style={{ width: 205, height: 100, color: 'powderblue' }}>
+          <View
+            style={{
+              width: 205,
+              height: 100,
+              color: 'powderblue',
+            }}
+          >
             <TextInput
               onChangeText={text => this.setState({ age: text })}
               autoCapitalize="none"
               autoCompleteType="off"
+              autoCorrect={false}
               value={this.age}
               keyboardType="numeric"
               style={styles.inputFields}
