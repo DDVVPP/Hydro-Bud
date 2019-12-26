@@ -23,21 +23,12 @@ export default class SignupScreen extends Component {
       password: '',
       height: 0,
       weight: 0,
-      zipcode: 0,
       age: 0,
       totalCups: 0,
     };
     this.createUser = this.createUser.bind(this);
     this.calculateCups = this.calculateCups.bind(this);
   }
-
-  // async componentDidMount() {
-  //   FirebaseWrapper.GetInstance()
-  //     .getUser('users')
-  //     .then(dataValues => {
-  //       console.log('USERS', dataValues);
-  //     });
-  // }
 
   calculateCups() {
     let firstCalc = this.state.weight / 2.2;
