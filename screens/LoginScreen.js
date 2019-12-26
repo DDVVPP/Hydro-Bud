@@ -19,8 +19,14 @@ export default class LoginScreen extends Component {
   constructor() {
     super();
     this.state = {
+      firstName: '',
+      lastName: '',
       email: '',
       password: '',
+      height: 0,
+      weight: 0,
+      age: 0,
+      totalCups: 0,
       users: [],
     };
     this.onLogin = this.onLogin.bind(this);
@@ -44,10 +50,20 @@ export default class LoginScreen extends Component {
       const filteredUser = allUsers.filter(user => {
         return user.email === this.state.email;
       });
-      console.log(this.state.email);
-      console.log('ALL USERS', allUsers);
-      this.props.navigation.navigate('Counter', filteredUser);
-      console.log('FILTERED', filteredUser);
+      this.setState({
+        firstName: filteredUser[0].firstName,
+        lastName: filteredUser[0].lastName,
+        height: filteredUser[0].height,
+        weight: filteredUser[0].weight,
+        age: filteredUser[0].age,
+        totalCups: filteredUser[0].totalCups,
+      });
+
+      // console.log('ALL USERS', allUsers);
+
+      this.props.navigation.navigate('Counter', this.state);
+
+      // console.log('FILTERED', filteredUser);
       // if (
       //   this.state.users.email === this.state.email &&
       //   this.state.users.password === this.state.password
